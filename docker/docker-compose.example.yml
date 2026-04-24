@@ -1,0 +1,26 @@
+services:
+  spark-tts:
+    image: ghcr.io/openttsgroup/spark-tts-open-tts:latest
+    container_name: spark-tts-open-tts
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./voices:/voices:ro
+      - ./cache:/root/.cache
+    environment:
+      SPARKTTS_MODEL: "SparkAudio/Spark-TTS-0.5B"
+      LOG_LEVEL: "info"
+      # Uncomment to let browsers call the API from any origin:
+      # CORS_ENABLED: "true"
+      # Uncomment to fall back to CPU on a host without NVIDIA drivers
+      # (slow — minutes per request; debug only):
+      # SPARKTTS_DEVICE: "cpu"
+      # SPARKTTS_DTYPE: "float32"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
