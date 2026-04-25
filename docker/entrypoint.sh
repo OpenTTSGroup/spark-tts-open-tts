@@ -4,7 +4,7 @@ set -euo pipefail
 # Engine defaults
 : "${SPARKTTS_MODEL:=SparkAudio/Spark-TTS-0.5B}"
 : "${SPARKTTS_DEVICE:=auto}"
-: "${SPARKTTS_DTYPE:=float16}"
+: "${SPARKTTS_DTYPE:=bfloat16}"
 
 # Service-level defaults
 : "${VOICES_DIR:=/voices}"

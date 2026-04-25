@@ -80,7 +80,7 @@ curl -X POST localhost:8000/v1/audio/clone \
 | `SPARKTTS_MODEL` | `SparkAudio/Spark-TTS-0.5B` | HuggingFace repo id, or a local directory |
 | `SPARKTTS_DEVICE` | `auto` | `auto` / `cuda` / `cpu` |
 | `SPARKTTS_CUDA_INDEX` | `0` | GPU index when multiple are visible |
-| `SPARKTTS_DTYPE` | `float16` | `float16` / `bfloat16` / `float32`; the LLM is cast to this dtype on CUDA, CPU is always `float32` |
+| `SPARKTTS_DTYPE` | `bfloat16` | `float16` / `bfloat16` / `float32`; the LLM is cast to this dtype on CUDA, CPU is always `float32`. `float16` can produce `inf`/`nan` logits during sampling on Qwen2.5-0.5B — switch to `float32` if you must run on Turing/Volta (T4/V100) where bf16 isn't supported |
 | `SPARKTTS_TEMPERATURE` | `0.8` | LLM sampling default |
 | `SPARKTTS_TOP_K` | `50` | LLM sampling default |
 | `SPARKTTS_TOP_P` | `0.95` | LLM sampling default |

@@ -78,7 +78,7 @@ curl -X POST localhost:8000/v1/audio/clone \
 | `SPARKTTS_MODEL` | `SparkAudio/Spark-TTS-0.5B` | HuggingFace repo id，或本地目录 |
 | `SPARKTTS_DEVICE` | `auto` | `auto` / `cuda` / `cpu` |
 | `SPARKTTS_CUDA_INDEX` | `0` | 多 GPU 时指定卡号 |
-| `SPARKTTS_DTYPE` | `float16` | `float16` / `bfloat16` / `float32`；CUDA 下只对 LLM 做 cast，CPU 强制 `float32` |
+| `SPARKTTS_DTYPE` | `bfloat16` | `float16` / `bfloat16` / `float32`；CUDA 下只对 LLM 做 cast，CPU 强制 `float32`。`float16` 在 Qwen2.5-0.5B 采样时偶发 `inf`/`nan`；若必须跑在 Turing/Volta（T4/V100，不支持 bf16）请改用 `float32` |
 | `SPARKTTS_TEMPERATURE` | `0.8` | LLM 采样默认值 |
 | `SPARKTTS_TOP_K` | `50` | LLM 采样默认值 |
 | `SPARKTTS_TOP_P` | `0.95` | LLM 采样默认值 |

@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     )
     sparktts_device: Literal["auto", "cuda", "cpu"] = "auto"
     sparktts_cuda_index: int = Field(default=0, ge=0)
-    sparktts_dtype: Literal["float16", "bfloat16", "float32"] = "float16"
+    sparktts_dtype: Literal["float16", "bfloat16", "float32"] = "bfloat16"
 
     # Generation defaults (used when the request omits the field)
     sparktts_temperature: float = Field(default=0.8, ge=0.0, le=2.0)
